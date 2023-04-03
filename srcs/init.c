@@ -6,13 +6,30 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 12:34:09 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:16:36 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_init_paths(char **env, t_global *g)
+static void	ft_add_slash(t_global *g)
+{
+	int		i;
+	char	*tmp;
+
+	i = 0;
+	tmp = NULL;
+	while (g->paths[i])
+	{
+		tmp = ft_strjoin(g->paths[i], "/");
+		free(g->paths[i]);
+		g->paths[i] = ft_strdup(tmp);
+		free(tmp);
+		i++;
+	}
+}
+
+static void	ft_init_paths(char **env, t_global *g)
 {
 	int	i;
 
@@ -24,15 +41,26 @@ void	ft_init_paths(char **env, t_global *g)
 	g->paths = ft_split(&env[i][5], ':');
 	if (!g->paths)
 		ft_error(g);
-	ft_print_tab(g->paths);
+}
+
+static void	ft_init_cmds(char **argv, t_global *g)
+{
+	g->cmd1 = ft_split(argv[2], ' ');
+	if (!g->cmd1)
+		ft_error(g);
+	g->cmd2 = ft_split(argv[3], ' ');
+	if (!g->cmd2)
+		ft_error(g);
 }
 
 void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 {
-	g->argv = NULL;
 	g->paths = NULL;
+	g->cmd1 = NULL;
+	g->cmd2 = NULL;
 	g->argc = argc - 1;
+	g->nbr_cmds = g->argc - 2;
 	ft_init_paths(env, g);
-	(void)argv; // get rid of this later
-	
+	ft_add_slash(g);
+	ft_init_cmds(argv, g);
 }

@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/03/24 17:34:53 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/03 20:32:51 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ SRC =	$(DIR)pipex.c \
 		$(DIR)init.c \
 		$(DIR)error.c \
 		$(DIR)debug.c \
+		$(DIR)parsing.c \
+		$(DIR)utils.c \
+		$(DIR)pipe.c \
 		
 OBJ = ${SRC:.c=.o}
 

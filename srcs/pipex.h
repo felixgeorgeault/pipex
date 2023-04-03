@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/03/24 17:35:24 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:45:47 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 # include "../include/libft/libft.h"
+# include <fcntl.h>
 /**************************************************************/
 /*********************      STRUCTS    ************************/
 /**************************************************************/
@@ -22,8 +23,11 @@
 typedef struct	s_global
 {
         int		argc;
-        char	**argv;
+		int		nbr_cmds;
 		char	**paths;
+		char	**cmd1;
+		char	**cmd2;
+		int		pipefd[2];
 }		t_global;
 
 /**************************************************************/
@@ -39,5 +43,13 @@ void	ft_error(t_global *g);
 
 // DEBUG.C GET RID OF THAT SHIIIIIIIiiiikaldsjfaklsdfjalskdfjaslnkfjaelskjrlnaekwjakwjrklwjerklwjkrnv !!!!!
 void	ft_print_tab(char **tab);
+void	ft_print_fds(t_global *g);
+void	ft_print_all(t_global *g);
+
+// PARSING.C
+void	ft_parse_cmds(t_global *g);
+
+// PIPE.C
+void	ft_init_pipe(t_global *g);
 
 #endif
