@@ -1,0 +1,4 @@
+.vscode/
+pipex.dSYM/
+*.o
+pipex
