@@ -1,11 +1,5 @@
 #include "pipex.h"
 
-void	ft_print_all(t_global *g)
-{
-	ft_print_tab(g->cmd1);
-	ft_print_tab(g->cmd2);
-}
-
 void	ft_print_tab(char **tab)
 {
 	int	i;
@@ -39,13 +33,11 @@ void	ft_print_lst(t_global *g)
 	t_pipex	*first;
 
 	first = g->lst;
-	while (g->lst->next)
+	while (g->lst)
 	{
 		ft_printf("[%s %s]\n", g->lst->content[0], g->lst->content[1]);
 		ft_printf("----------\n");
 		g->lst = g->lst->next;
 	}
-	ft_printf("[%s %s]\n", g->lst->content[0], g->lst->content[1]);
-	ft_printf("----------\n");
 	g->lst = first;
 }

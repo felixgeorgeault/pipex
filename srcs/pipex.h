@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/04 15:22:55 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:52:38 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ typedef struct	s_global
 {
         int		argc;
 		int		nbr_cmds;
+		int		nbr_paths;
 		char	**paths;
-		char	**cmd1;
-		char	**cmd2;
 		int		pipefd[2];
 		t_pipex *lst;
 		
@@ -52,7 +51,6 @@ void	ft_error(t_global *g);
 // DEBUG.C GET RID OF THAT SHIIIIIIIiiiikaldsjfaklsdfjalskdfjaslnkfjaelskjrlnaekwjakwjrklwjerklwjkrnv !!!!!
 void	ft_print_tab(char **tab);
 void	ft_print_fds(t_global *g);
-void	ft_print_all(t_global *g);
 void	ft_print_lst(t_global *g);
 
 // PARSING.C
@@ -67,5 +65,8 @@ t_pipex	*ft_lstlast_pipex(t_pipex *lst);
 void	ft_lstclear_pipex(t_pipex **lst);
 int		ft_lstsize_pipex(t_pipex **lst);
 t_pipex	*ft_lstnew_pipex(char **content);
+
+// UTILS.C
+int		ft_tablen(char **tab, t_global *g);
 
 #endif

@@ -6,9 +6,20 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:55:29 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 13:16:18 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:37:42 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+int	ft_tablen(char **tab, t_global *g)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		ft_error(g);
+	while (tab[i])
+		i++;
+	return (i);
+}

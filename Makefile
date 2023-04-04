@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/04 14:38:40 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/04 16:53:38 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC =	$(DIR)pipex.c \
 		
 OBJ = ${SRC:.c=.o}
 
-CFLAGS =  -Werror -Wextra -Wall
+CFLAGS =  -Werror -Wextra -Wall -fsanitize=address -g
 
 REMOVE = rm -f
 

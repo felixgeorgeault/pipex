@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:37:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/04 15:22:20 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:18:23 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	ft_lstsize_pipex(t_pipex **lst)
 	i = 1;
 	if (!lst || !*lst)
 		return (0);
-	while ((*lst)->next)
+	while (*lst)
 	{
 		*lst = (*lst)->next;
-		++i;
+		i++;
 	}
 	*lst = first;
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:43:04 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 20:32:23 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:57:03 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,64 +20,45 @@ static int	does_cmd_exist(char *str)
 		return (0);
 }
 
-static int	ft_check_cmd(char **str, int j, t_global *g)
+static void	put_path_cmd(char **cmd, t_global *g)
 {
+	int		i;
 	char	*tmp;
-	int		tablen;
 	
+	i = 0;
 	tmp = NULL;
-	if (does_cmd_exist(*str))
-		return (1);
-	tmp = ft_strjoin(g->paths[j], *str);
-	if (does_cmd_exist(tmp))
+	while (g->paths[i])
 	{
-		free(*str);
-		*str = ft_strdup(tmp);
+		tmp = ft_strjoin(g->paths[i], *cmd);
+		if (does_cmd_exist(tmp))
+		{
+			*cmd = ft_strdup(tmp);
+			free(tmp);
+			break ;
+		}
 		free(tmp);
-		return (1);
+		if (i == g->nbr_paths - 1)
+			ft_error(g);
+		i++;
 	}
-	free(tmp);
-	tablen = 0;
-	while (g->paths[tablen])
-		tablen++;
-	if (j < tablen - 1)
-		return (0);
-	return (-1);
 }
 
 static void	ft_fill_cmds(t_global *g)
 {
-	int	i;
-	int	res;
-	
-	i = 0;
-	res = -10;
-	while (g->paths[i])
+	t_pipex *first;
+
+	first = g->lst;
+	while (g->lst)
 	{
-		res = ft_check_cmd(&g->cmd1[0], i, g);
-		if (res == 1)
-			break ;
-		else if (res == -1)
-			ft_error(g);
-		else
-			i++;
+		if (!does_cmd_exist(g->lst->content[0]))
+			put_path_cmd(&g->lst->content[0], g);
+		g->lst = g->lst->next;
 	}
-	i = 0;
-	res = -10;
-	while (g->paths[i])
-	{
-		res = ft_check_cmd(&g->cmd2[0], i, g);
-		if (res == 1)
-			break ;
-		else if (res == -1)
-			ft_error(g);
-		else
-			i++;
-	}
+	g->lst = first;
 }
 
 void	ft_parse_cmds(t_global *g)
 {
 	ft_fill_cmds(g);
-	ft_print_all(g);
+	ft_print_lst(g);
 }
