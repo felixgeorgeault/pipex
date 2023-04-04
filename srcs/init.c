@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 20:16:36 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:35:50 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,18 @@ static void	ft_init_paths(char **env, t_global *g)
 
 static void	ft_init_cmds(char **argv, t_global *g)
 {
-	g->cmd1 = ft_split(argv[2], ' ');
-	if (!g->cmd1)
-		ft_error(g);
-	g->cmd2 = ft_split(argv[3], ' ');
-	if (!g->cmd2)
-		ft_error(g);
+	int		i;
+	char	**tmp;
+	
+	i = 0;
+	tmp = NULL;
+	while (i < g->nbr_cmds)
+	{
+		tmp = ft_split(argv[i + 2], ' ');
+		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp));
+		i++;
+	}
+	
 }
 
 void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
@@ -63,4 +69,5 @@ void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 	ft_init_paths(env, g);
 	ft_add_slash(g);
 	ft_init_cmds(argv, g);
+	ft_print_lst(g);
 }

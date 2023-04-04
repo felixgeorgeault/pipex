@@ -31,3 +31,21 @@ void	ft_print_fds(t_global *g)
 		i++;
 	}
 }
+
+void	ft_print_lst(t_global *g)
+{
+	if (!g->lst)
+		return ;
+	t_pipex	*first;
+
+	first = g->lst;
+	while (g->lst->next)
+	{
+		ft_printf("[%s %s]\n", g->lst->content[0], g->lst->content[1]);
+		ft_printf("----------\n");
+		g->lst = g->lst->next;
+	}
+	ft_printf("[%s %s]\n", g->lst->content[0], g->lst->content[1]);
+	ft_printf("----------\n");
+	g->lst = first;
+}

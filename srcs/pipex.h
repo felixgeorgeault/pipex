@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 19:45:47 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:22:55 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 /*********************      STRUCTS    ************************/
 /**************************************************************/
 
+typedef struct s_pipex
+{
+	char			**content;
+	struct s_pipex	*next;
+}		t_pipex;
+
 typedef struct	s_global
 {
         int		argc;
@@ -28,6 +34,8 @@ typedef struct	s_global
 		char	**cmd1;
 		char	**cmd2;
 		int		pipefd[2];
+		t_pipex *lst;
+		
 }		t_global;
 
 /**************************************************************/
@@ -45,11 +53,19 @@ void	ft_error(t_global *g);
 void	ft_print_tab(char **tab);
 void	ft_print_fds(t_global *g);
 void	ft_print_all(t_global *g);
+void	ft_print_lst(t_global *g);
 
 // PARSING.C
 void	ft_parse_cmds(t_global *g);
 
 // PIPE.C
 void	ft_init_pipe(t_global *g);
+
+// CHAINED_LIST.C
+void	ft_lstadd_back_pipex(t_pipex **lst, t_pipex *new);
+t_pipex	*ft_lstlast_pipex(t_pipex *lst);
+void	ft_lstclear_pipex(t_pipex **lst);
+int		ft_lstsize_pipex(t_pipex **lst);
+t_pipex	*ft_lstnew_pipex(char **content);
 
 #endif
