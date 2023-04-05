@@ -1,5 +1,8 @@
 .vscode/
-pipex.dSYM/
 *.o
 pipex
 .gitignore
+*/*.o
+*/*.dSYM
+*.dSYM
+*/.vscode
