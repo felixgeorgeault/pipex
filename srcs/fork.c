@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:21:59 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:43:18 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_init_fork(t_global *g, char **argv, char **env)
 	pid_t	pid;
 	int		file1;
 	int		file2;
-	
+
 	file1 = open(argv[1], O_RDONLY);
 	if (file1 == -1)
 		ft_error(g);

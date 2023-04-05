@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:20:25 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:42:16 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_init_cmds(char **argv, t_global *g)
 {
 	int		i;
 	char	**tmp;
-	
+
 	i = 0;
 	tmp = NULL;
 	while (i < g->nbr_cmds)

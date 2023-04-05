@@ -6,17 +6,16 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:17:44 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/05 18:41:30 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-
 # include "../include/libft/libft.h"
 # include <fcntl.h>
-#include <stdio.h>
+# include <stdio.h>
 /**************************************************************/
 /*********************      STRUCTS    ************************/
 /**************************************************************/
@@ -27,15 +26,14 @@ typedef struct s_pipex
 	struct s_pipex	*next;
 }		t_pipex;
 
-typedef struct	s_global
+typedef struct s_global
 {
-        int		argc;
-		int		nbr_cmds;
-		int		nbr_paths;
-		char	**paths;
-		int		pipefd[2];
-		t_pipex *lst;
-		
+	int		argc;
+	int		nbr_cmds;
+	int		nbr_paths;
+	char	**paths;
+	int		pipefd[2];
+	t_pipex	*lst;
 }		t_global;
 
 /**************************************************************/
