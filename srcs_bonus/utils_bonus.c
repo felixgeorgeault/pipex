@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipe.c                                             :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/03 16:48:58 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/03 17:23:15 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/04/03 12:55:29 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/05 16:46:11 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	ft_init_pipe(t_global *g)
+int	ft_tablen(char **tab, t_global *g)
 {
-	(void)g;
+	int	i;
+
+	i = 0;
+	if (!tab)
+		ft_error(g);
+	while (tab[i])
+		i++;
+	return (i);
 }

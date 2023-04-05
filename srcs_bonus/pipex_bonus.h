@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 17:57:08 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:32:38 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	ft_print_lst(t_global *g);
 
 // PARSING.C
 void	ft_parse_cmds(t_global *g);
+
+// PIPE.C
+void	ft_init_pipe(t_global *g);
 
 // CHAINED_LIST.C
 void	ft_lstadd_back_pipex(t_pipex **lst, t_pipex *new);
