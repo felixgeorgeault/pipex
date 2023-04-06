@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/06 16:14:52 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:22:40 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void static	ft_child(int file1, char **env, t_global *g)
 		ft_error(g);
 	if (dup2(file1, 0) == -1)
 		ft_error(g);
+	close(g->pipefd[1]);
 	close(g->pipefd[0]);
 	close(file1);
 	if (execve(g->lst->content[0], g->lst->content, env) == -1)
