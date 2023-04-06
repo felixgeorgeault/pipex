@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/06 16:22:40 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:33:45 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void static	ft_parent(int file2, char **env, t_global *g, pid_t pid)
 		ft_error(g);
 	if (dup2(g->pipefd[0], 0) == -1)
 		ft_error(g);
-	close(g->pipefd[1]);
-	close(file2);
+	ft_close(g->pipefd[1], g);
+	ft_close(file2, g);
 	if (execve(g->lst->next->content[0], g->lst->next->content, env) == -1)
 		ft_error(g);
 }

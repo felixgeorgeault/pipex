@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/06 16:15:04 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:33:18 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_pipex	*ft_lstnew_pipex(char **content);
 
 // UTILS.C
 int		ft_tablen(char **tab, t_global *g);
+void	ft_close(int fd, t_global *g);
 
 // FORK.C
 void	ft_init_fork(t_global *g, char **argv, char **env);
