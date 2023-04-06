@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/05 17:56:52 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/05 18:46:59 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,15 +29,7 @@ SRC =	$(DIR)pipex.c \
 		$(DIR)chained_list.c \
 		$(DIR)fork.c \
 
-SRC_BONUS = $(DIR_BONUS)pipex_bonus.c \
-			$(DIR_BONUS)init_bonus.c \
-			$(DIR_BONUS)error_bonus.c \
-			$(DIR_BONUS)debug_bonus.c \
-			$(DIR_BONUS)parsing_bonus.c \
-			$(DIR_BONUS)utils_bonus.c \
-			$(DIR_BONUS)pipe_bonus.c \
-			$(DIR_BONUS)chained_list_bonus.c \
-			$(DIR_BONUS)fork_bonus.c \
+SRC_BONUS = 
 		
 OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}

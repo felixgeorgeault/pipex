@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:43:18 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:14:52 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void static	ft_parent(int file2, char **env, t_global *g, pid_t pid)
 {
 	int	status;
 
-	waitpid(pid, &status, 0);
+	if (waitpid(pid, &status, 0) == -1)
+		ft_error(g);
 	if (dup2(file2, 1) == -1)
 		ft_error(g);
 	if (dup2(g->pipefd[0], 0) == -1)
