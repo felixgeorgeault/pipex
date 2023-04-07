@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:42:16 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:10:42 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 {
 	g->paths = NULL;
 	g->lst = NULL;
+	g->pids = NULL;
+	g->pipefd = NULL;
 	g->argc = argc;
 	g->nbr_cmds = g->argc - 3;
 	ft_init_paths(env, g);

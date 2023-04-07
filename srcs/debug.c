@@ -41,3 +41,17 @@ void	ft_print_lst(t_global *g)
 	}
 	g->lst = first;
 }
+
+void	ft_print_pipefds(t_global *g)
+{
+	if (!g->pipefd)
+		ft_error(g);
+	int	i;
+
+	i = 0;
+	while (i < g->nbr_pipe)
+	{
+		ft_printf("%d\n%d\n", g->pipefd[i][0], g->pipefd[i][1]);
+		i++;
+	}
+}

@@ -1,62 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:28:56 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/07 16:44:48 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/04/07 14:57:09 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/07 16:54:06 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_free_tab(char **tab)
+static int	*ft_createmini_tab(t_global *g)
 {
-	int	i;
+	int	*tab;
 
-	i = 0;
+	tab = NULL;
+	tab = malloc(sizeof(int) * 2);
 	if (!tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
+		ft_error(g);
+	return (tab);
 }
 
-void	ft_free_pipefds(t_global *g)
+void	ft_createpipe_tab(t_global *g)
 {
 	int	i;
-
+	int	**tab;
+	
 	i = 0;
-	if (!g->pipefd)
-		return ;
+	tab = NULL;
+	tab = malloc(sizeof(int *) * (g->nbr_pipe));
+	if (!tab)
+		ft_error(g);
 	while (i < g->nbr_pipe)
 	{
-		if (g->pipefd[i])
-			free(g->pipefd[i]);
+		tab[i] = ft_createmini_tab(g);
 		i++;
 	}
-	free(g->pipefd);
+	g->pipefd = tab;
 }
 
-void	ft_free_pids(t_global *g)
+void	ft_pipe(int pos, t_global *g)
 {
-	if (!g->pids)
-		return ;
-	free(g->pids);
+	if (pos != g->nbr_fork)
+	{
+		if (pipe(g->pipefd[pos]) == -1)
+			ft_error(g);
+	}
 }
 
-void	ft_error(t_global *g)
-{
-	ft_free_tab(g->paths);
-	ft_free_pipefds(g);
-	ft_free_pids(g);
-	ft_lstclear_pipex(&g->lst);
-	ft_putstr_fd("Error\n", 2);
-	perror(NULL);
-	exit(EXIT_FAILURE);
-}
