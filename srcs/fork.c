@@ -6,80 +6,50 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/07 16:53:02 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:48:59 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// void static	ft_child(int file1, char **env, t_global *g)
-// {
-// 	if (dup2(g->pipefd[1], 1) == -1)
-// 		ft_error(g);
-// 	if (dup2(file1, 0) == -1)
-// 		ft_error(g);
-// 	close(g->pipefd[0]);
-// 	close(file1);
-// 	if (execve(g->lst->content[0], g->lst->content, env) == -1)
-// 		ft_error(g);
-// }
-
-// void static	ft_parent(int file2, char **env, t_global *g, pid_t pid)
-// {
-// 	int	status;
-
-// 	if (waitpid(pid, &status, 0) == -1)
-// 		ft_error(g);
-// 	if (dup2(file2, 1) == -1)
-// 		ft_error(g);
-// 	if (dup2(g->pipefd[0], 0) == -1)
-// 		ft_error(g);
-// 	close(g->pipefd[1]);
-// 	close(file2);
-// 	if (execve(g->lst->next->content[0], g->lst->next->content, env) == -1)
-// 		ft_error(g);
-// }
-
-// void	ft_init_fork(t_global *g, char **argv, char **env)
-// {
-// 	pid_t	pid;
-// 	int		file1;
-// 	int		file2;
-
-// 	file1 = open(argv[1], O_RDONLY);
-// 	if (file1 == -1)
-// 		ft_error(g);
-// 	file2 = open(argv[g->argc - 1], O_WRONLY);
-// 	if (file2 == -1)
-// 		ft_error(g);
-// 	if (pipe(g->pipefd) == -1)
-// 		ft_error(g);
-// 	pid = fork();
-// 	if (pid == -1)
-// 		ft_error(g);
-// 	if (pid == 0)
-// 		ft_child(file1, env, g);
-// 	ft_parent(file2, env, g, pid);
-// }
-
 void	ft_fork(int pos, t_global *g)
 {
-	pid_t	pid;
-	pid = fork();
-	if (pid == -1)
+	g->pids[pos] = fork();
+	if (g->pids[pos] == -1)
 		ft_error(g);
-	g->pids[pos] = pid;
 }
 
 void	ft_createfork_tab(t_global *g)
 {
-	pid_t	*tab;
 	int		i;
+	pid_t	*tab;
 
-	tab = NULL;
 	i = 0;
+	tab = NULL;
 	tab = malloc(sizeof(pid_t) * (g->nbr_fork));
 	if (!tab)
 		ft_error(g);
 	g->pids = tab;
 }
+
+void	ft_first_child(int pos, char **env, t_global *g)
+{
+	ft_close_first_child(pos, g);
+	ft_dup2(g->infile, 0, g);
+	ft_close(g->infile, g);
+	ft_dup2(g->pipefd[pos][1], 1, g);
+	ft_close(g->pipefd[pos][1], g);
+	execve(g->lst->content[0], g->lst->content, env);
+	g->lst = g->lst->next;
+}
+
+void	ft_last_child(int pos, char **env, t_global *g)
+{
+	//ft_close_last_child(pos, g);
+	ft_dup2(g->pipefd[pos - 1][0], 0, g);
+	ft_close(g->pipefd[pos - 1][0], g);
+	ft_dup2(g->outfile, 1, g);
+	ft_close(g->outfile, g);
+	execve(g->lst->content[0], g->lst->content, env);
+}
+

@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:55:29 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/07 15:35:47 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:32:59 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,23 @@ void	ft_dup2(int file1, int file2, t_global *g)
 {
 	int	success;
 
-	success = 0;
 	success = dup2(file1, file2);
 	if (success == -1)
 		ft_error(g);
 }
 
-void	ft_waitpid(pid_t pid, int *status, int options, t_global *g)
+void	ft_waitpid(t_global *g)
 {
+	int	i;
 	int	success;
-
-	success = 0;
-	success = waitpid(pid, status, options);
-	if (success == -1)
-		ft_error(g);
+	int	status;
+	
+	i = 0;
+	while (i < g->nbr_fork)
+	{
+		success = waitpid(g->pids[i], &status, 0);
+		if (success == -1)
+			ft_error(g);
+		i++;
+	}
 }

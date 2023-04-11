@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:57:09 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/07 16:54:06 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:24:26 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_createpipe_tab(t_global *g)
 {
 	int	i;
 	int	**tab;
-	
+
 	i = 0;
 	tab = NULL;
 	tab = malloc(sizeof(int *) * (g->nbr_pipe));
@@ -43,10 +43,9 @@ void	ft_createpipe_tab(t_global *g)
 
 void	ft_pipe(int pos, t_global *g)
 {
-	if (pos != g->nbr_fork)
+	if (pos != g->nbr_fork - 1)
 	{
 		if (pipe(g->pipefd[pos]) == -1)
 			ft_error(g);
 	}
 }
-

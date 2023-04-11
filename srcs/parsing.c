@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:43:04 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/05 18:42:35 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:21:42 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	does_cmd_exist(char *str)
 		return (0);
 }
 
-static void	put_path_cmd(char **cmd, t_global *g)
+static void	put_path_cmd(char **cmd, t_pipex *head, t_global *g)
 {
 	int		i;
 	char	*tmp;
@@ -39,21 +39,24 @@ static void	put_path_cmd(char **cmd, t_global *g)
 		}
 		free(tmp);
 		if (i == g->nbr_paths - 1)
+		{
+			g->lst = head;
 			ft_error(g);
+		}
 		i++;
 	}
 }
 
 void	ft_parse_cmds(t_global *g)
 {
-	t_pipex	*first;
+	t_pipex	*head;
 
-	first = g->lst;
+	head = g->lst;
 	while (g->lst)
 	{
 		if (!does_cmd_exist(g->lst->content[0]))
-			put_path_cmd(&g->lst->content[0], g);
+			put_path_cmd(&g->lst->content[0], head, g);
 		g->lst = g->lst->next;
 	}
-	g->lst = first;
+	g->lst = head;
 }

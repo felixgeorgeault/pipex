@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/07 17:15:37 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:52:31 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_global
 	int		nbr_pipe;
 	int		nbr_fork;
 	int		nbr_paths;
-	int		file1;
-	int		file2;
+	int		infile;
+	int		outfile;
 	char	**paths;
 	int		**pipefd;
 	pid_t	*pids;
@@ -74,18 +74,24 @@ t_pipex	*ft_lstnew_pipex(char **content);
 int		ft_tablen(char **tab, t_global *g);
 void	ft_close(int fd, t_global *g);
 void	ft_dup2(int file1, int file2, t_global *g);
-void	ft_waitpid(pid_t pid, int *status, int options, t_global *g);
+void	ft_waitpid(t_global *g);
 
 // FORK.C
-void	ft_init_fork(t_global *g, char **argv, char **env);
-void	ft_createfork_tab(t_global *g);
 void	ft_fork(int pos, t_global *g);
+void	ft_createfork_tab(t_global *g);
+void	ft_first_child(int pos, char **env, t_global *g);
+void	ft_last_child(int pos, char **env, t_global *g);
 
 // MULTIPLE_FORK.C
-void	ft_exec(char **argv, char **env, t_global *g);
+void	ft_exec(char **env, t_global *g);
 
 // PIPE.C
 void	ft_pipe(int pos, t_global *g);
 void	ft_createpipe_tab(t_global *g);
+
+// FORK_UTILS.C
+void	ft_close_first_child(int pos, t_global *g);
+void	ft_close_last_child(int pos, t_global *g);
+void	ft_parent_close(int pos, t_global *g);
 
 #endif
