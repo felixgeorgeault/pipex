@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 12:59:52 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:10:43 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void	ft_init_paths(char **env, t_global *g)
 	while (env[i] && (ft_strncmp(env[i], "PATH=", 5) != 0))
 		i++;
 	if (ft_strncmp(env[i], "PATH=", 5) != 0)
-		ft_error(g);
+		ft_error(g, "Did not find any PATH line in the env\n");
 	g->paths = ft_split(&env[i][5], ':');
 	if (!g->paths)
-		ft_error(g);
+		ft_error(g, "Failed to create paths array with split\n");
 	g->nbr_paths = ft_tablen(g->paths, g);
 }
 
@@ -71,10 +71,10 @@ void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 	g->nbr_fork = g->nbr_cmds;
 	g->infile = open(argv[1], O_RDONLY);
 	if (g->infile == -1)
-		ft_error(g);
+		ft_error(g, "Failed to open infile\n");
 	g->outfile = open(argv[g->argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (g->outfile == -1)
-		ft_error(g);
+		ft_error(g, "Failed to open outfile\n");
 	ft_init_paths(env, g);
 	ft_add_slash(g);
 	ft_init_cmds(argv, g);

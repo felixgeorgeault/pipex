@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 13:22:21 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:08:07 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_init_struct(int argc, char **argv, char **end, t_global *g);
 
 // ERROR.C
 void	ft_free_tab(char **tab);
-void	ft_error(t_global *g);
+void	ft_error(t_global *g, const char *custom_perror);
 void	ft_free_pipefds(t_global *g);
 void	ft_free_pids(t_global *g);
 

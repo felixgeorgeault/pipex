@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:28:56 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/11 18:17:50 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:08:56 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	ft_free_pids(t_global *g)
 	free(g->pids);
 }
 
-void	ft_error(t_global *g)
+void	ft_error(t_global *g, const char *custom_perror)
 {
 	ft_free_tab(g->paths);
 	ft_free_pipefds(g);
 	ft_free_pids(g);
 	ft_lstclear_pipex(&g->lst);
 	ft_putstr_fd("Error\n", 2);
-	perror(NULL);
+	perror(custom_perror);
 	exit(EXIT_FAILURE);
 }

@@ -45,7 +45,7 @@ void	ft_print_lst(t_global *g)
 void	ft_print_pipefds(t_global *g)
 {
 	if (!g->pipefd)
-		ft_error(g);
+		ft_error(g, NULL);
 	int	i;
 
 	i = 0;
