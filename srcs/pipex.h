@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/11 19:52:31 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:22:21 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,9 @@ void	ft_fork(int pos, t_global *g);
 void	ft_createfork_tab(t_global *g);
 void	ft_first_child(int pos, char **env, t_global *g);
 void	ft_last_child(int pos, char **env, t_global *g);
+void	ft_middle_child(int pos, char **env, t_global *g);
 
-// MULTIPLE_FORK.C
+// EXEC.C
 void	ft_exec(char **env, t_global *g);
 
 // PIPE.C

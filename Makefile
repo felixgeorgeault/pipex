@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/11 19:43:02 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/12 12:51:00 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC =	$(DIR)pipex.c \
 		$(DIR)chained_list.c \
 		$(DIR)fork.c \
 		$(DIR)pipe.c \
-		$(DIR)multiple_fork.c \
+		$(DIR)exec.c \
 		$(DIR)fork_utils.c \
 
 SRC_BONUS = 

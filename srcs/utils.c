@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:55:29 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/11 18:32:59 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:26:41 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_waitpid(t_global *g)
 	int	i;
 	int	success;
 	int	status;
-	
+
 	i = 0;
 	while (i < g->nbr_fork)
 	{

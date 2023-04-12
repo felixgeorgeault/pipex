@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/11 18:17:35 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:59:52 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 	g->infile = open(argv[1], O_RDONLY);
 	if (g->infile == -1)
 		ft_error(g);
-	g->outfile = open(argv[g->argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0644);
+	g->outfile = open(argv[g->argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (g->outfile == -1)
 		ft_error(g);
 	ft_init_paths(env, g);
