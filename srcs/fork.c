@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:12:05 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:20:36 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_fork(int pos, t_global *g)
 {
 	g->pids[pos] = fork();
 	if (g->pids[pos] == -1)
-		ft_error(g, "An error occured on the fork function\n");
+		ft_error(g, FORK_ERR);
 }
 
 void	ft_createfork_tab(t_global *g)

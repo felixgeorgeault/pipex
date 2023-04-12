@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:57:09 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:13:32 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:21:06 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	ft_pipe(int pos, t_global *g)
 	if (pos != g->nbr_fork - 1)
 	{
 		if (pipe(g->pipefd[pos]) == -1)
-			ft_error(g, "An error occured on the pipe function\n");
+			ft_error(g, PIPE_ERR);
 	}
 }

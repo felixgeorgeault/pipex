@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:08:07 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:21:11 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 # include "../include/libft/libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+/**************************************************************/
+/*********************      MACROS     ************************/
+/**************************************************************/
+
+# define PIPE_ERR "An error occured on the pipe function\n"
+# define WAITPID_ERR "An error occured on waitpid function\n"
+# define DUP2_ERR "An error occured on dup2 function\n"
+# define CLOSE_ERR "An error occured on close function\n"
+# define FORK_ERR "An error occured on the fork function\n"
+
 /**************************************************************/
 /*********************      STRUCTS    ************************/
 /**************************************************************/
