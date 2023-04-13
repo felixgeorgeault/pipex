@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/12 12:51:00 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/13 15:14:26 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,30 @@ SRC =	$(DIR)pipex.c \
 		$(DIR)exec.c \
 		$(DIR)fork_utils.c \
 
-SRC_BONUS = 
+SRC_BONUS = $(DIR_BONUS)pipex_bonus.c \
+			$(DIR_BONUS)init_bonus.c \
+			$(DIR_BONUS)error_bonus.c \
+			$(DIR_BONUS)debug_bonus.c \
+			$(DIR_BONUS)parsing_bonus.c \
+			$(DIR_BONUS)utils_bonus.c \
+			$(DIR_BONUS)chained_list_bonus.c \
+			$(DIR_BONUS)fork_bonus.c \
+			$(DIR_BONUS)pipe_bonus.c \
+			$(DIR_BONUS)exec_bonus.c \
+			$(DIR_BONUS)fork_utils_bonus.c \
+			$(DIR_BONUS)init_utils_bonus.c \
+			$(DIR_BONUS)here_doc_bonus.c \
+			$(DIR_BONUS)get_next_line_bonus.c \
+			$(DIR_BONUS)get_next_line_utils_bonus.c \
+			$(DIR_BONUS)free_bonus.c \
+
+%.o: %.c
+	$(CC) $(FLAGS) -o $@ -c $<
 		
 OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 REMOVE = rm -f
 
@@ -58,10 +76,18 @@ clean:
 fclean:	clean
 	@$(REMOVE) $(NAME)
 	@make -C include/libft fclean
+
+clean_bonus:
+	@$(REMOVE) $(OBJ_BONUS)
+	@make -C include/libft clean
+
+fclean_bonus: clean_bonus
+	@$(REMOVE) $(NAME)
+	@make -C include/libft fclean
 	
 re: fclean all
 
 libft: 
 	@$(DEPENDS)
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft bonus clean_bonus fclean_bonus

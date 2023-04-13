@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 16:55:32 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:30:33 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/03/24 17:28:56 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/13 15:05:07 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_error(t_global *g, const char *custom_perror)
 {
-	t_global	g;
-
-	if (argc == 5)
-	{
-		ft_init_struct(argc, argv, env, &g);
-		ft_parse_cmds(&g);
-		ft_exec(env, &g);
-		ft_waitpid(&g);
-		ft_free_pipefds(&g);
-		ft_free_pids(&g);
-		ft_free_tab(g.paths);
-		ft_lstclear_pipex(&g.lst);
-	}
-	return (0);
+	ft_free_array(g->paths);
+	free(g->pids);
+	ft_free_int_array(g->pipefd, g->nbr_pipe);
+	ft_lstclear_pipex(&g->lst);
+	ft_unlink_tmp();
+	ft_putstr_fd("Error\n", 2);
+	perror(custom_perror);
+	exit(EXIT_FAILURE);
 }

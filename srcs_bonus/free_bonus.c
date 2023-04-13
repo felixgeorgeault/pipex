@@ -1,31 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 16:55:32 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:30:33 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/04/13 13:21:35 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/13 15:04:42 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_free_array(char **tab)
 {
-	t_global	g;
+	int	i;
 
-	if (argc == 5)
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
 	{
-		ft_init_struct(argc, argv, env, &g);
-		ft_parse_cmds(&g);
-		ft_exec(env, &g);
-		ft_waitpid(&g);
-		ft_free_pipefds(&g);
-		ft_free_pids(&g);
-		ft_free_tab(g.paths);
-		ft_lstclear_pipex(&g.lst);
+		free(tab[i]);
+		i++;
 	}
-	return (0);
+	free(tab);
+}
+
+void	ft_free_int_array(int **array, int len)
+{
+	int	i;
+
+	i = 0;
+	if (!array)
+		return ;
+	while (i < len)
+	{
+		if (array[i])
+			free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void	ft_unlink_tmp(void)
+{
+	if (access("here_doc_tmp", F_OK) != -1)
+		unlink("here_doc_tmp");
 }
