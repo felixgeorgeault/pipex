@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 17:59:19 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:02:21 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ static void	ft_add_slash(t_global *g)
 	while (g->paths[i])
 	{
 		tmp = ft_strjoin(g->paths[i], "/");
+		if (!tmp)
+			ft_error(g, "Failed to add '/' at the end of the command path with strjoin\n");
 		free(g->paths[i]);
 		g->paths[i] = ft_strdup(tmp);
+		if (!g->paths[i])
+			ft_error(g, NULL);
 		free(tmp);
 		i++;
 	}
@@ -58,6 +62,8 @@ static void	ft_init_cmds(char **argv, t_global *g)
 	while (i < g->nbr_cmds)
 	{
 		tmp = ft_split(argv[i + cmd_offset], ' ');
+		if (!tmp)
+			ft_error(g, "Failed to create commands array with split\n");
 		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp));
 		i++;
 	}
