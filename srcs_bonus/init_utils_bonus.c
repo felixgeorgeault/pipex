@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:27:39 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 16:25:53 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:19:51 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ void	ft_init_struct_vars(int argc, char **argv, t_global *g)
 	g->nbr_cmds = g->argc - 3;
 	g->nbr_pipe = g->nbr_cmds - 1;
 	g->nbr_fork = g->nbr_cmds;
+	g->outfile = open(argv[g->argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	if (g->outfile == -1)
+		ft_error(g, "Failed to open outfile\n");
 	if (g->is_heredoc)
 		ft_init_heredoc(argc, argv, g);
 	else
 	{
 		g->infile = open(argv[1], O_RDONLY);
 		if (g->infile == -1)
-			ft_error(g, "Failed to open infile\n");
+			ft_error(g, argv[1]);
 	}
 }

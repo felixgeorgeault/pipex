@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 16:32:28 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:33:27 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ void	ft_init_struct(int argc, char **argv, char **end, t_global *g);
 
 // ERROR.C
 void	ft_error(t_global *g, const char *custom_perror);
-
-// DEBUG.C GET RID OF THAT SHIIIIIIIiiiikaldsjfaklsdfjalskdfjaslnkfjaelskjrlnaekwjakwjrklwjerklwjkrnv !!!!!
-void	ft_print_tab(char **tab);
-void	ft_print_fds(t_global *g);
-void	ft_print_lst(t_global *g);
-void	ft_print_pipefds(t_global *g);
 
 // PARSING.C
 void	ft_parse_cmds(t_global *g);

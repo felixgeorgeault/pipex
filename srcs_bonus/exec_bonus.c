@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:44:26 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 15:56:56 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:07:42 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	ft_exec(char **argv, char **env, t_global *g)
 
 	i = 0;
 	head = g->lst;
-	g->outfile = open(argv[g->argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	if (g->outfile == -1)
-		ft_error(g, "Failed to open outfile\n");
 	while (i < g->nbr_fork)
 	{
 		ft_pipe(i, g);
