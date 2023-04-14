@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/13 17:02:21 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:09:34 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 	ft_init_paths(env, g);
 	ft_add_slash(g);
 	ft_init_cmds(argv, g);
-	ft_createpipe_tab(g);
-	ft_createfork_tab(g);
+	g->pipefd = ft_createpipe_array(g);
+	g->pids = ft_createfork_array(g);
 }

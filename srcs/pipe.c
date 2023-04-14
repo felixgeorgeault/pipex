@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:57:09 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:21:06 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:07:26 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ static int	*ft_createmini_tab(t_global *g)
 	return (tab);
 }
 
-void	ft_createpipe_tab(t_global *g)
+int	**ft_createpipe_tab(t_global *g)
 {
 	int	i;
-	int	**tab;
+	int	**array;
 
 	i = 0;
-	tab = NULL;
-	tab = malloc(sizeof(int *) * (g->nbr_pipe));
-	if (!tab)
+	array = NULL;
+	array = malloc(sizeof(int *) * (g->nbr_pipe));
+	if (!array)
 		ft_error(g, "Failed to create pipe array\n");
 	while (i < g->nbr_pipe)
 	{
-		tab[i] = ft_createmini_tab(g);
+		array[i] = ft_createmini_tab(g);
 		i++;
 	}
-	g->pipefd = tab;
+	return (array);
 }
 
 void	ft_pipe(int pos, t_global *g)

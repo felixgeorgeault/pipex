@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/13 15:05:01 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:19:34 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_waitpid(t_global *g);
 
 // FORK.C
 void	ft_fork(int pos, t_global *g);
-void	ft_createfork_tab(t_global *g);
+pid_t	*ft_createfork_array(t_global *g);
 void	ft_first_child(int pos, char **env, t_global *g);
 void	ft_last_child(int pos, char **env, t_global *g);
 void	ft_middle_child(int pos, char **env, t_global *g);
@@ -98,11 +98,10 @@ void	ft_exec(char **env, t_global *g);
 
 // PIPE.C
 void	ft_pipe(int pos, t_global *g);
-void	ft_createpipe_tab(t_global *g);
+int		**ft_createpipe_array(t_global *g);
 
 // FORK_UTILS.C
-void	ft_close_first_child(int pos, t_global *g);
-void	ft_close_last_child(int pos, t_global *g);
+void	ft_close_middle_child(int pos, t_global *g);
 void	ft_parent_close(int pos, t_global *g);
 
 // INIT_UTILS_BONUS.C
