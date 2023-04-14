@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:37:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/13 13:37:43 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:28:06 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	ft_lstclear_pipex(t_pipex **lst)
 {
 	t_pipex	*tmp;
 
-	if (!lst)
+	if (!lst || !*lst)
 		return ;
+	ft_set_lst_head(lst);
 	while (*lst)
 	{
 		tmp = *lst;
@@ -72,7 +73,7 @@ int	ft_lstsize_pipex(t_pipex **lst)
 	return (i);
 }
 
-t_pipex	*ft_lstnew_pipex(char **content)
+t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous)
 {
 	t_pipex	*list;
 
@@ -80,6 +81,7 @@ t_pipex	*ft_lstnew_pipex(char **content)
 	if (!list)
 		return (NULL);
 	list->content = content;
+	list->previous = previous;
 	list->next = NULL;
 	return (list);
 }

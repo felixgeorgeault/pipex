@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:55:29 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/12 15:39:58 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:35:35 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ int	ft_tablen(char **tab, t_global *g)
 
 	i = 0;
 	if (!tab)
-		ft_error(g, "Failed to get the size of the array -> ft_tablen function\n");
+		ft_error(g, "Failed to get the size of the array\n");
 	while (tab[i])
 		i++;
 	return (i);
 }
 
-void	ft_close(int fd, t_global *g)
+void	ft_close(int *fd, t_global *g)
 {
-	if (close(fd) == -1)
+	if (*fd == -1)
+		return ;
+	if (close(*fd) == -1)
 		ft_error(g, CLOSE_ERR);
+	*fd = -1;
 }
 
 void	ft_dup2(int file1, int file2, t_global *g)

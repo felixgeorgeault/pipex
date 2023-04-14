@@ -6,12 +6,12 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 13:19:34 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:32:28 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../include/libft/libft.h"
 # include <fcntl.h>
@@ -26,6 +26,7 @@
 # define DUP2_ERR "An error occured on dup2 function\n"
 # define CLOSE_ERR "An error occured on close function\n"
 # define FORK_ERR "An error occured on the fork function\n"
+# define TMP_FILE "/Users/fgeorgea/.here_doc_tmp"
 
 /**************************************************************/
 /*********************      STRUCTS    ************************/
@@ -34,6 +35,7 @@
 typedef struct s_pipex
 {
 	char			**content;
+	struct s_pipex	*previous;
 	struct s_pipex	*next;
 }		t_pipex;
 
@@ -78,11 +80,14 @@ void	ft_lstadd_back_pipex(t_pipex **lst, t_pipex *new);
 t_pipex	*ft_lstlast_pipex(t_pipex *lst);
 void	ft_lstclear_pipex(t_pipex **lst);
 int		ft_lstsize_pipex(t_pipex **lst);
-t_pipex	*ft_lstnew_pipex(char **content);
+t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous);
+
+// CHAINED_LIST_UTILS.C
+void	ft_set_lst_head(t_pipex **lst);
 
 // UTILS.C
 int		ft_tablen(char **tab, t_global *g);
-void	ft_close(int fd, t_global *g);
+void	ft_close(int *fd, t_global *g);
 void	ft_dup2(int file1, int file2, t_global *g);
 void	ft_waitpid(t_global *g);
 
@@ -94,7 +99,7 @@ void	ft_last_child(int pos, char **env, t_global *g);
 void	ft_middle_child(int pos, char **env, t_global *g);
 
 // EXEC.C
-void	ft_exec(char **env, t_global *g);
+void	ft_exec(char **argv, char **env, t_global *g);
 
 // PIPE.C
 void	ft_pipe(int pos, t_global *g);

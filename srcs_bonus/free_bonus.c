@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:21:35 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/13 15:04:42 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:48:24 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	ft_free_int_array(int **array, int len)
 
 void	ft_unlink_tmp(void)
 {
-	if (access("here_doc_tmp", F_OK) != -1)
-		unlink("here_doc_tmp");
+	if (access(TMP_FILE, F_OK) != -1)
+		unlink(TMP_FILE);
 }

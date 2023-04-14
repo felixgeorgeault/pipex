@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   chained_list_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 17:28:56 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 16:35:15 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/04/14 15:09:27 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/14 16:33:03 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	ft_error(t_global *g, const char *custom_perror)
+void	ft_set_lst_head(t_pipex **lst)
 {
-	ft_free_array(g->paths);
-	free(g->pids);
-	ft_free_int_array(g->pipefd, g->nbr_pipe);
-	ft_lstclear_pipex(&g->lst);
-	ft_unlink_tmp();
-	ft_putstr_fd("Error\n", 2);
-	perror(custom_perror);
-	exit(EXIT_FAILURE);
+	if (!lst || !*lst)
+		return ;
+	while ((*lst)->previous)
+		*lst = (*lst)->previous;
 }

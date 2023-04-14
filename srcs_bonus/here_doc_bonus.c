@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:00:32 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/13 16:27:30 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:34:03 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_here_doc(t_global *g)
 {
 	char	*str;
 	int		end_token_len;
-	
+
 	end_token_len = ft_strlen(g->end_token);
 	str = get_next_line(STDIN_FILENO);
 	while (*str)
@@ -35,8 +35,8 @@ void	ft_here_doc(t_global *g)
 		str = get_next_line(STDIN_FILENO);
 	}
 	free(str);
-	ft_close(g->infile, g);
-	g->infile = open("here_doc_tmp", O_RDONLY);
-		if (g->infile == -1)
-			ft_error(g, "Failed to open infile\n");
+	ft_close(&g->infile, g);
+	g->infile = open(TMP_FILE, O_RDONLY, 0644);
+	if (g->infile == -1)
+		ft_error(g, "Failed to open infile\n");
 }

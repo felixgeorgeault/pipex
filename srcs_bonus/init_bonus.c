@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 13:09:34 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:34:45 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_add_slash(t_global *g)
 	{
 		tmp = ft_strjoin(g->paths[i], "/");
 		if (!tmp)
-			ft_error(g, "Failed to add '/' at the end of the command path with strjoin\n");
+			ft_error(g, "Failed to add '/' to cmd path\n");
 		free(g->paths[i]);
 		g->paths[i] = ft_strdup(tmp);
 		if (!g->paths[i])
@@ -53,10 +53,12 @@ static void	ft_init_cmds(char **argv, t_global *g)
 	int		i;
 	int		cmd_offset;
 	char	**tmp;
+	t_pipex	*previous;
 
 	i = 0;
 	cmd_offset = 2;
 	tmp = NULL;
+	previous = NULL;
 	if (g->is_heredoc)
 		cmd_offset = 3;
 	while (i < g->nbr_cmds)
@@ -64,7 +66,8 @@ static void	ft_init_cmds(char **argv, t_global *g)
 		tmp = ft_split(argv[i + cmd_offset], ' ');
 		if (!tmp)
 			ft_error(g, "Failed to create commands array with split\n");
-		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp));
+		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp, previous));
+		previous = g->lst;
 		i++;
 	}
 }
