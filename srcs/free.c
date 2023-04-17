@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 13:21:35 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 17:47:40 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:12:20 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ void	ft_free_int_array(int **array, int len)
 	}
 	free(array);
 }
-

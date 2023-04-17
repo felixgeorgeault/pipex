@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 17:47:37 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:12:15 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ void	ft_last_child(int pos, char **env, t_global *g)
 	ft_close(&g->outfile, g);
 	execve(g->lst->content[0], g->lst->content, env);
 }
-
