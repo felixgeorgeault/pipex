@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/17 15:53:43 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/17 16:20:15 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,18 +76,10 @@ clean:
 fclean:	clean
 	@$(REMOVE) $(NAME)
 	@make -C include/libft fclean
-
-clean_bonus:
-	@$(REMOVE) $(OBJ_BONUS)
-	@make -C include/libft clean
-
-fclean_bonus: clean_bonus
-	@$(REMOVE) $(NAME)
-	@make -C include/libft fclean
 	
 re: fclean all
 
 libft: 
 	@$(DEPENDS)
 
-.PHONY: all clean fclean re libft bonus clean_bonus fclean_bonus
+.PHONY: all clean fclean re libft bonus
