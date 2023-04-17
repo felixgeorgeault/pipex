@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/14 17:33:20 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/17 15:53:43 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,18 @@ LIBFT = ar rcs $(NAME) ./include/libft/libft.a
 
 DEPENDS = make -C include/libft
 
-SRC =	
+SRC = $(DIR)pipex.c \
+		$(DIR)init.c \
+		$(DIR)error.c \
+		$(DIR)parsing.c \
+		$(DIR)utils.c \
+		$(DIR)chained_list.c \
+		$(DIR)fork.c \
+		$(DIR)pipe.c \
+		$(DIR)exec.c \
+		$(DIR)fork_utils.c \
+		$(DIR)init_utils.c \
+		$(DIR)free.c \
 
 SRC_BONUS = $(DIR_BONUS)pipex_bonus.c \
 			$(DIR_BONUS)init_bonus.c \
@@ -28,7 +39,6 @@ SRC_BONUS = $(DIR_BONUS)pipex_bonus.c \
 			$(DIR_BONUS)parsing_bonus.c \
 			$(DIR_BONUS)utils_bonus.c \
 			$(DIR_BONUS)chained_list_bonus.c \
-			$(DIR_BONUS)chained_list_utils_bonus.c \
 			$(DIR_BONUS)fork_bonus.c \
 			$(DIR_BONUS)pipe_bonus.c \
 			$(DIR_BONUS)exec_bonus.c \

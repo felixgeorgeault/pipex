@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_bonus.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/17 15:40:55 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:37:08 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 static void	ft_add_slash(t_global *g)
 {
@@ -51,19 +51,15 @@ static void	ft_init_paths(char **env, t_global *g)
 static void	ft_init_cmds(char **argv, t_global *g)
 {
 	int		i;
-	int		cmd_offset;
 	char	**tmp;
 	t_pipex	*previous;
 
 	i = 0;
-	cmd_offset = 2;
 	tmp = NULL;
 	previous = NULL;
-	if (g->is_heredoc)
-		cmd_offset = 3;
 	while (i < g->nbr_cmds)
 	{
-		tmp = ft_split(argv[i + cmd_offset], ' ');
+		tmp = ft_split(argv[i + 2], ' ');
 		if (!tmp)
 			ft_error(g, "Failed to create commands array with split\n");
 		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp, previous, g));
@@ -74,8 +70,6 @@ static void	ft_init_cmds(char **argv, t_global *g)
 
 void	ft_init_struct(int argc, char **argv, char **env, t_global *g)
 {
-	g->is_heredoc = 0;
-	ft_check_here_doc(argc, argv, g);
 	ft_init_struct_vars(argc, argv, g);
 	ft_init_paths(env, g);
 	ft_add_slash(g);

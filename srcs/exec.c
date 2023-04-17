@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_utils_bonus.c                                 :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 19:42:37 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 17:46:09 by fgeorgea         ###   ########.fr       */
+/*   Created: 2023/04/07 14:44:26 by fgeorgea          #+#    #+#             */
+/*   Updated: 2023/04/14 17:49:17 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
-void	ft_parent_close(int pos, t_global *g)
+static void	ft_child(int pos, char **env, t_global *g)
 {
 	if (pos == 0)
-	{
-		ft_close(&g->infile, g);
-		ft_close(&g->pipefd[0][1], g);
-	}
-	else if (pos == g->nbr_fork - 1)
-	{
-		ft_close(&g->pipefd[pos - 1][0], g);
-		ft_close(&g->outfile, g);
-	}
+		ft_first_child(pos, env, g);
 	else
+		ft_last_child(pos, env, g);
+}
+
+void	ft_exec(char **argv, char **env, t_global *g)
+{
+	int		i;
+	t_pipex	*head;
+
+	i = 0;
+	head = g->lst;
+	while (i < g->nbr_fork)
 	{
-		ft_close(&g->pipefd[pos - 1][0], g);
-		ft_close(&g->pipefd[pos][1], g);
+		ft_pipe(i, g);
+		ft_fork(i, g);
+		if (g->pids[i] == 0)
+			ft_child(i, env, g);
+		ft_parent_close(i, g);
+		g->lst = g->lst->next;
+		i++;
 	}
+	g->lst = head;
 }

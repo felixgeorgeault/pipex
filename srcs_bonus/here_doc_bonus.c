@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:00:32 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 16:34:03 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:52:49 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_here_doc(t_global *g)
 
 	end_token_len = ft_strlen(g->end_token);
 	str = get_next_line(STDIN_FILENO);
+	if (!str)
+		ft_error(g, "get_next_line failed to read here_doc\n");
 	while (*str)
 	{
 		if (ft_exit_here_doc(str, end_token_len, g))
@@ -33,6 +35,8 @@ void	ft_here_doc(t_global *g)
 		ft_putstr_fd(str, g->infile);
 		free(str);
 		str = get_next_line(STDIN_FILENO);
+		if (!str)
+			ft_error(g, "get_next_line failed to read here_doc\n");
 	}
 	free(str);
 	ft_close(&g->infile, g);
