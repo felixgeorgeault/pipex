@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:44:26 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/14 17:49:17 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:58:07 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static void	ft_child(int pos, char **env, t_global *g)
 {
 	if (pos == 0)
 		ft_first_child(pos, env, g);
-	else
+	else if (pos == g->nbr_fork - 1)
 		ft_last_child(pos, env, g);
+	else
+		ft_middle_child(pos, env, g);
 }
 
 void	ft_exec(char **argv, char **env, t_global *g)

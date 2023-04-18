@@ -6,15 +6,13 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/17 16:20:15 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/18 14:59:36 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
 DIR = srcs/
-
-DIR_BONUS = srcs_bonus/
 
 LIBFT = ar rcs $(NAME) ./include/libft/libft.a
 
@@ -32,28 +30,12 @@ SRC = $(DIR)pipex.c \
 		$(DIR)fork_utils.c \
 		$(DIR)init_utils.c \
 		$(DIR)free.c \
-
-SRC_BONUS = $(DIR_BONUS)pipex_bonus.c \
-			$(DIR_BONUS)init_bonus.c \
-			$(DIR_BONUS)error_bonus.c \
-			$(DIR_BONUS)parsing_bonus.c \
-			$(DIR_BONUS)utils_bonus.c \
-			$(DIR_BONUS)chained_list_bonus.c \
-			$(DIR_BONUS)fork_bonus.c \
-			$(DIR_BONUS)pipe_bonus.c \
-			$(DIR_BONUS)exec_bonus.c \
-			$(DIR_BONUS)fork_utils_bonus.c \
-			$(DIR_BONUS)init_utils_bonus.c \
-			$(DIR_BONUS)here_doc_bonus.c \
-			$(DIR_BONUS)get_next_line_bonus.c \
-			$(DIR_BONUS)get_next_line_utils_bonus.c \
-			$(DIR_BONUS)free_bonus.c \
+		$(DIR)here_doc.c \
 
 %.o: %.c
 	$(CC) $(FLAGS) -o $@ -c $<
 		
 OBJ = ${SRC:.c=.o}
-OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -66,11 +48,8 @@ all: $(NAME)
 $(NAME): libft $(OBJ)
 	@$(COMPILE) $(OBJ)
 
-bonus: libft $(OBJ_BONUS)
-	@$(COMPILE) $(OBJ_BONUS)
-
 clean:
-	@$(REMOVE) $(OBJ) $(OBJ_BONUS)
+	@$(REMOVE) $(OBJ)
 	@make -C include/libft clean
 
 fclean:	clean
@@ -82,4 +61,4 @@ re: fclean all
 libft: 
 	@$(DEPENDS)
 
-.PHONY: all clean fclean re libft bonus
+.PHONY: all clean fclean re libft

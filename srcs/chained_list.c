@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:37:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/17 15:45:08 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:57:59 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,10 @@ void	ft_lstclear_pipex(t_pipex **lst)
 	}
 }
 
-void	ft_set_lst_head(t_pipex **lst)
-{
-	if (!lst || !*lst)
-		return ;
-	while ((*lst)->previous)
-		*lst = (*lst)->previous;
-}
-
 t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous, t_global *g)
 {
 	t_pipex	*list;
 
-	list = NULL;
 	list = malloc(sizeof(t_pipex));
 	if (!list)
 	{
@@ -78,4 +69,12 @@ t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous, t_global *g)
 	list->previous = previous;
 	list->next = NULL;
 	return (list);
+}
+
+void	ft_set_lst_head(t_pipex **lst)
+{
+	if (!lst || !*lst)
+		return ;
+	while ((*lst)->previous)
+		*lst = (*lst)->previous;
 }

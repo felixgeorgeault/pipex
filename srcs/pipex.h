@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/17 15:46:57 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:47:41 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define DUP2_ERR "An error occured on dup2 function\n"
 # define CLOSE_ERR "An error occured on close function\n"
 # define FORK_ERR "An error occured on the fork function\n"
+# define TMP_FILE "/Users/fgeorgea/.here_doc_tmp"
 
 /**************************************************************/
 /*********************      STRUCTS    ************************/
@@ -47,6 +48,8 @@ typedef struct s_global
 	int		nbr_paths;
 	int		infile;
 	int		outfile;
+	int		is_heredoc;
+	char	*end_token;
 	char	**paths;
 	int		**pipefd;
 	pid_t	*pids;
@@ -84,6 +87,7 @@ void	ft_fork(int pos, t_global *g);
 pid_t	*ft_createfork_array(t_global *g);
 void	ft_first_child(int pos, char **env, t_global *g);
 void	ft_last_child(int pos, char **env, t_global *g);
+void	ft_middle_child(int pos, char **env, t_global *g);
 
 // EXEC.C
 void	ft_exec(char **argv, char **env, t_global *g);
@@ -97,9 +101,14 @@ void	ft_parent_close(int pos, t_global *g);
 
 // INIT_UTILS_BONUS.C
 void	ft_init_struct_vars(int argc, char **argv, t_global *g);
+void	ft_check_here_doc(int argc, char **argv, t_global *g);
 
-// FREE.C
+// HERE_DOC_BONUS.C
+void	ft_here_doc(t_global *g);
+
+// FREE_BONUS.C
 void	ft_free_int_array(int **array, int len);
 void	ft_free_array(char **tab);
+void	ft_unlink_tmp(void);
 
 #endif
