@@ -6,15 +6,13 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/18 14:59:36 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/04/27 14:59:05 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
 DIR = srcs/
-
-LIBFT = ar rcs $(NAME) ./include/libft/libft.a
 
 DEPENDS = make -C include/libft
 
@@ -32,9 +30,6 @@ SRC = $(DIR)pipex.c \
 		$(DIR)free.c \
 		$(DIR)here_doc.c \
 
-%.o: %.c
-	$(CC) $(FLAGS) -o $@ -c $<
-		
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror

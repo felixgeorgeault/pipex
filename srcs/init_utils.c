@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:27:39 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/18 14:58:55 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:02:46 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_check_here_doc(int argc, char **argv, t_global *g)
 		ft_error(g, "Program executes here_doc but does not have enough args\n");
 }
 
-static void	ft_init_heredoc(int argc, char **argv, t_global *g)
+static void	ft_init_heredoc(char **argv, t_global *g)
 {
 	g->nbr_cmds = g->argc - 4;
 	g->nbr_pipe = g->nbr_cmds - 1;
@@ -46,7 +46,7 @@ void	ft_init_struct_vars(int argc, char **argv, t_global *g)
 	if (g->outfile == -1)
 		ft_error(g, "Failed to open outfile\n");
 	if (g->is_heredoc)
-		ft_init_heredoc(argc, argv, g);
+		ft_init_heredoc(argv, g);
 	else
 	{
 		g->infile = open(argv[1], O_RDONLY);

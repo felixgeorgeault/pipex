@@ -6,7 +6,7 @@
 /*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:58:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/18 14:58:15 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:59:47 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ pid_t	*ft_createfork_array(t_global *g)
 	return (array);
 }
 
-void	ft_first_child(int pos, char **env, t_global *g)
+void	ft_first_child(char **env, t_global *g)
 {
 	ft_close(&g->pipefd[0][0], g);
 	ft_close(&g->outfile, g);
