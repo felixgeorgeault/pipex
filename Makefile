@@ -6,7 +6,7 @@
 #    By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 16:13:35 by fgeorgea          #+#    #+#              #
-#    Updated: 2023/04/27 15:25:02 by fgeorgea         ###   ########.fr        #
+#    Updated: 2023/05/01 17:13:31 by fgeorgea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,13 @@ CFLAGS = -Wall -Wextra -Werror
 
 REMOVE = rm -f
 
-COMPILE = gcc $(CFLAGS) -o $(NAME) -Iincludes -Linclude/libft -lft
+COMPILE = gcc $(CFLAGS) -o $(NAME)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(COMPILE) $(OBJ)
+$(NAME): $(OBJ)
+	make -C include/libft
+	$(COMPILE) $(OBJ) -Iinclude -Linclude/libft -lft
 
 clean:
 	$(REMOVE) $(OBJ)
@@ -53,7 +54,4 @@ fclean:	clean
 	
 re: fclean all
 
-$(LIBFT): 
-	$(DEPENDS)
-
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re
