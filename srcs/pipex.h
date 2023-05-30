@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgeorgea <fgeorgea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:55 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/27 15:01:07 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/05/31 01:24:58 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 typedef struct s_pipex
 {
 	char			**content;
-	struct s_pipex	*previous;
 	struct s_pipex	*next;
 }		t_pipex;
 
@@ -67,14 +66,14 @@ void	ft_init_struct(int argc, char **argv, char **end, t_global *g);
 void	ft_error(t_global *g, const char *custom_perror);
 
 // PARSING.C
-void	ft_parse_cmds(t_global *g);
+void	put_path_cmd(char **cmd, t_global *g);
+int		does_cmd_exist(char *str);
 
 // CHAINED_LIST.C
 void	ft_lstadd_back_pipex(t_pipex **lst, t_pipex *new);
 t_pipex	*ft_lstlast_pipex(t_pipex *lst);
 void	ft_lstclear_pipex(t_pipex **lst);
-t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous, t_global *g);
-void	ft_set_lst_head(t_pipex **lst);
+t_pipex	*ft_lstnew_pipex(char **content, t_global *g);
 
 // UTILS.C
 int		ft_tablen(char **tab, t_global *g);
@@ -85,9 +84,9 @@ void	ft_waitpid(t_global *g);
 // FORK.C
 void	ft_fork(int pos, t_global *g);
 pid_t	*ft_createfork_array(t_global *g);
-void	ft_first_child(char **env, t_global *g);
-void	ft_last_child(int pos, char **env, t_global *g);
-void	ft_middle_child(int pos, char **env, t_global *g);
+void	ft_first_child(t_global *g);
+void	ft_last_child(int pos, t_global *g);
+void	ft_middle_child(int pos, t_global *g);
 
 // EXEC.C
 void	ft_exec(char **env, t_global *g);
@@ -98,6 +97,8 @@ int		**ft_createpipe_array(t_global *g);
 
 // FORK_UTILS.C
 void	ft_parent_close(int pos, t_global *g);
+void	ft_execve(char **envp, t_global *g);
+void	ft_children_close(int pos, t_global *g);
 
 // INIT_UTILS_BONUS.C
 void	ft_init_struct_vars(int argc, char **argv, t_global *g);

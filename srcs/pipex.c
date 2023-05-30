@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgeorgea <fgeorgea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:55:32 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/27 15:01:17 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/05/31 01:24:26 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int argc, char **argv, char **env)
 	if (argc >= 5)
 	{
 		ft_init_struct(argc, argv, env, &g);
-		ft_parse_cmds(&g);
 		if (g.is_heredoc)
 			ft_here_doc(&g);
 		ft_exec(env, &g);

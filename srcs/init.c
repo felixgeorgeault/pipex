@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgeorgea <fgeorgea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:11:34 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/18 14:58:58 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/05/31 01:16:13 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,16 @@
 static void	ft_add_slash(t_global *g)
 {
 	int		i;
-	char	*tmp;
+	char	*new_str;
 
 	i = 0;
-	tmp = NULL;
 	while (g->paths[i])
 	{
-		tmp = ft_strjoin(g->paths[i], "/");
-		if (!tmp)
+		new_str = ft_strjoin(g->paths[i], "/");
+		if (!new_str)
 			ft_error(g, "Failed to add '/' to cmd path\n");
 		free(g->paths[i]);
-		g->paths[i] = ft_strdup(tmp);
-		if (!g->paths[i])
-			ft_error(g, NULL);
-		free(tmp);
+		g->paths[i] = new_str;
 		i++;
 	}
 }
@@ -53,12 +49,10 @@ static void	ft_init_cmds(char **argv, t_global *g)
 	int		i;
 	int		cmd_offset;
 	char	**tmp;
-	t_pipex	*previous;
 
 	i = 0;
 	cmd_offset = 2;
 	tmp = NULL;
-	previous = NULL;
 	if (g->is_heredoc)
 		cmd_offset = 3;
 	while (i < g->nbr_cmds)
@@ -66,8 +60,7 @@ static void	ft_init_cmds(char **argv, t_global *g)
 		tmp = ft_split(argv[i + cmd_offset], ' ');
 		if (!tmp)
 			ft_error(g, "Failed to create commands array with split\n");
-		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp, previous, g));
-		previous = g->lst;
+		ft_lstadd_back_pipex(&g->lst, ft_lstnew_pipex(tmp, g));
 		i++;
 	}
 }

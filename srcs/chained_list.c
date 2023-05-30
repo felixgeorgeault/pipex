@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chained_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgeorgea <fgeorgea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgeorgea <fgeorgea@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:37:54 by fgeorgea          #+#    #+#             */
-/*   Updated: 2023/04/18 14:57:59 by fgeorgea         ###   ########.fr       */
+/*   Updated: 2023/05/31 01:19:03 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_lstclear_pipex(t_pipex **lst)
 
 	if (!lst || !*lst)
 		return ;
-	ft_set_lst_head(lst);
 	while (*lst)
 	{
 		tmp = *lst;
@@ -55,7 +54,7 @@ void	ft_lstclear_pipex(t_pipex **lst)
 	}
 }
 
-t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous, t_global *g)
+t_pipex	*ft_lstnew_pipex(char **content, t_global *g)
 {
 	t_pipex	*list;
 
@@ -66,15 +65,6 @@ t_pipex	*ft_lstnew_pipex(char **content, t_pipex *previous, t_global *g)
 		ft_error(g, "Failed to create new struct in chained list\n");
 	}
 	list->content = content;
-	list->previous = previous;
 	list->next = NULL;
 	return (list);
-}
-
-void	ft_set_lst_head(t_pipex **lst)
-{
-	if (!lst || !*lst)
-		return ;
-	while ((*lst)->previous)
-		*lst = (*lst)->previous;
 }
